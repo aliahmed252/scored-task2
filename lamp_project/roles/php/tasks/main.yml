@@ -1,0 +1,18 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for php
+- name: install php
+  package:
+    name: php
+    state: present
+
+- name: install PHP MySQL extension
+  package:
+    name: php-mysqlnd
+    state: present
+
+- name: copy the content of php
+  template:
+    src: index.php.j2
+    dest: /var/www/html/index1.php
+  notify: restart apache

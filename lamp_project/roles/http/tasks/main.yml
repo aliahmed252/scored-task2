@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for http
+- name: install apache
+  package:
+    name: httpd
+    state: present
+- name: start and enable apache
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+- name: copy the content 
+  template:
+    src: index.php.j2
+    dest: /var/www/html/index.php
+  notify: restart apache

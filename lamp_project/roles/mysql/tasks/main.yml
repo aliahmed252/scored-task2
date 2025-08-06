@@ -1,0 +1,26 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for mysql
+- name: install mysql
+  package:
+    name: mariadb-server
+    state: present
+  notify: restart mariadb
+- name: start and enable mysql service
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Create MySQL database
+  community.mysql.mysql_db:
+    name: appdb
+    state: present
+  become: yes
+
+- name: Create MySQL database
+  community.mysql.mysql_db:
+    name: mydb
+    state: present
+    login_user: root
+    login_password: 1234
