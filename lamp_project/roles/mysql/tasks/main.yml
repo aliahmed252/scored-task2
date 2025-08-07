@@ -2,7 +2,6 @@
 ---
 # tasks file for mysql
 #SPDX-License-Identifier: MIT-0
----
 # tasks file for mysql
 - name: install mysql
   dnf:
@@ -31,4 +30,4 @@
     name: mydb
     state: present
     login_user: root
-    login_password: 1234
+    login_password: "{{ mysql_root_password }}"
